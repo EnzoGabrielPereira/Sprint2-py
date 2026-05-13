@@ -1,0 +1,329 @@
+# Lista responsável por armazenar todas as imagens cadastradas
+galeria = []
+
+
+# Função principal do sistema
+def menu():
+
+    while True:
+
+        # Exibição do menu principal
+        print("==== JOVI CÂMERA ====")
+        print("\n")
+        print("1 - Capturar imagem")
+        print("2 - Organizar imagens")
+        print("3 - Sugestão IA para imagem")
+        print("4 - Visualizar galeria")
+        print("5 - Sair")
+
+        try:
+
+            # Usuário escolhe uma opção do menu
+            opcao = int(input("Digite o número para respectiva ação que deseja fazer: "))
+
+            # Direciona para a opção escolhida
+            if opcao == 1:
+                capturando_img()
+
+            elif opcao == 2:
+                organizar_img()
+
+            elif opcao == 3:
+                sugestao_IA()
+
+            elif opcao == 4:
+                visualizar_galeria()
+
+            elif opcao == 5:
+                print("Saindo...")
+                break
+
+            # Caso o usuário digite uma opção inexistente
+            else:
+                print("Digite uma opção válida.")
+
+        # Tratamento de erro caso o usuário digite letras
+        except ValueError:
+            print("Erro: digite apenas números.")
+
+
+# Função responsável por simular a captura inteligente da câmera
+def capturando_img():
+
+    while True:
+
+        try:
+
+            # Entrada de dados do usuário
+            ambiente = input("Em que ambiente você está? (sala de aula): ").lower()
+
+            iluminacao = input("Qual o nível da iluminação? (boa, ruim, média): ").lower()
+
+            conteudo = input("Qual o conteúdo que você está registrando? " ).lower()
+
+            # Simulação da IA identificando ambiente de estudo
+            if ambiente == "sala de aula":
+                print("IA detectou ambiente de estudo")
+
+            # Simulação da correção automática da câmera
+            if iluminacao == "ruim":
+                print("Correção automática aplicada")
+
+            # Simulação de captura de documento
+            if conteudo == "documento":
+                print("Imagem salva com sucesso")
+
+            # Verifica informações inválidas
+            if (
+                ambiente != "sala de aula"
+                and iluminacao not in ["boa", "ruim", "média"]
+                and conteudo != "documento"
+            ):
+                print("Informações inválidas")
+
+            # Pergunta se o usuário deseja voltar ao menu
+            voltar = input("Deseja voltar ao menu? (s/n): ").lower()
+
+            # Retorna ao menu principal
+            if voltar == "s":
+                break
+
+        # Tratamento de erros gerais
+        except:
+            print("Ocorreu um erro.")
+
+
+# Função responsável por organizar e salvar imagens
+def organizar_img():
+
+   while True:
+
+    try:
+
+        # Usuário informa o nome da imagem
+        nome = input("Digite o nome da imagem: ")
+
+        # Validação da categoria
+        while True:
+
+            categoria = input("Digite a categoria da imagem (slide, documento, quadro): ").lower()
+
+            if categoria in ["slide", "documento", "quadro"]:
+                break
+
+            else:
+                print("Categoria inválida.")
+
+        # Data da captura
+        data = input("Digite a data da captura (dd/mm/aaaa): ")
+
+        # Validação da qualidade da imagem
+        while True:
+
+            qualidade = input("Digite a qualidade da imagem (alta, media, baixa): ").lower()
+
+            if qualidade in ["alta", "media", "baixa"]:
+                break
+
+            else:
+                print("Qualidade inválida.")
+
+        # Lista contendo os dados da imagem
+        imagem = [nome, categoria, qualidade, data]
+
+        # Adiciona imagem na galeria
+        galeria.append(imagem)
+
+        # Mensagem de confirmação
+        print("\nImagem salva com sucesso!")
+
+        # Exibe a lista de imagens
+        print(galeria)
+
+        # Pergunta se deseja voltar ao menu
+        voltar = input("\nDeseja voltar ao menu? (s/n): ").lower()
+
+        # Retorna ao menu principal
+        if voltar == "s":
+            break
+
+    # Tratamento de erros gerais
+    except:
+        print("Ocorreu um erro.")
+
+
+# Função responsável por gerar sugestões inteligentes da IA
+def sugestao_IA():
+
+    while True:
+
+        try:
+
+            # Entrada de dados da imagem
+            iluminacao = input(
+                "Como está a iluminação? (boa/ruim): "
+            ).lower()
+
+            distancia = input(
+                "Você está muito distante? (muito/pouco): "
+            ).lower()
+
+            tipo_conteudo = input(
+                "Qual o tipo de conteúdo que você está registrando? "
+                "(documento/slide/quadro): "
+            ).lower()
+
+            ambiente = input("Qual o ambiente em que você está? (sala de aula/biblioteca/ambiente externo): "
+            ).lower()
+
+            qualidade = input(
+                "Como está a qualidade da foto? (baixa/média/alta): "
+            ).lower()
+
+            movimento = input(
+                "A imagem está tremida? (sim/não): "
+            ).lower()
+
+            print("\n===== SUGESTÕES IA JOVI =====")
+
+            # Sugestões para iluminação ruim
+            if iluminacao == "ruim":
+                print("- Ativar modo noturno")
+                print("- Aumentar brilho automaticamente")
+                print("- Utilizar flash inteligente")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para distância da câmera
+            if distancia == "muito":
+                print("- IA recomenda aproximar a câmera")
+                print("- Ajuste automático de zoom aplicado")
+                print("- Melhor enquadramento detectado")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para documentos
+            if tipo_conteudo == "documento":
+                print("- Nitidez de texto aumentada")
+                print("- Contraste otimizado para leitura")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para slides
+            if tipo_conteudo == "slide":
+                print("- Correção de alinhamento aplicada")
+                print("- IA identificou apresentação")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para quadro
+            if tipo_conteudo == "quadro":
+                print("- Perspectiva corrigida")
+                print("- Realce de escrita ativado")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para ambiente sala de aula
+            if ambiente == "sala de aula":
+                print("- Modo estudo ativado")
+                print("- Foco automático em textos")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para biblioteca
+            if ambiente == "biblioteca":
+                print("- Captura discreta otimizada")
+                print("- Modo não perturbe")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para ambiente externo
+            if ambiente == "ambiente externo":
+                print("- Ajuste automático de brilho solar")
+                print("- Redução de reflexos aplicada")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para baixa qualidade
+            if qualidade == "baixa":
+                print("- IA recomenda estabilizar o celular")
+                print("- Sugestão de melhorar iluminação")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para qualidade média
+            if qualidade == "media":
+                print("- Ajustes automáticos aplicados")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para alta qualidade
+            if qualidade == "alta":
+                print("- Captura otimizada com sucesso")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Sugestões para imagens tremidas
+            if movimento == "sim":
+                print("- Estabilização inteligente ativada")
+                print("- IA recomenda manter a câmera fixa")
+            else:
+                print("Não consegui identificar essa informação")
+
+            # Pergunta se deseja voltar ao menu
+            voltar = input("\nDeseja voltar ao menu? (s/n): ").lower()
+
+            # Retorna ao menu principal
+            if voltar == "s":
+                break
+
+        # Tratamento de erros gerais
+        except:
+            print("Ocorreu um erro.")
+
+
+# Função responsável por exibir a galeria
+def visualizar_galeria():
+
+    while True:
+
+        try:
+
+            print("\n===== GALERIA JOVI =====")
+
+            # Verifica se a galeria está vazia
+            if len(galeria) == 0:
+                print("Nenhuma imagem salva.")
+
+            else:
+
+                contador = 1
+
+                # Percorre todas as imagens da galeria
+                for imagem in galeria:
+
+                    # Exibe os dados da imagem
+                    print(f"""{contador} -
+                        Nome: {imagem[0]}
+                        Categoria: {imagem[1]}
+                        Qualidade: {imagem[2]}
+                        Data: {imagem[3]}""")
+
+                    contador += 1
+
+            # Pergunta se deseja voltar ao menu
+            voltar = input(
+                "Deseja voltar ao menu? (s/n): "
+            ).lower()
+
+            # Retorna ao menu principal
+            if voltar == "s":
+                break
+
+        # Tratamento de erros gerais
+        except:
+            print("Ocorreu um erro.")
+
+
+# Inicialização do sistema
+menu()
